@@ -1,0 +1,16 @@
+.main {
+  background-color: #161516;
+  height: calc(100vh - 236px);
+  overflow: auto;
+}
+
+.main::-webkit-scrollbar {
+  width: 0;
+}
+
+.main__wrapper {
+  display: flex;
+  justify-content: start;
+  flex-direction: column;
+  gap: 35px 0px;
+}

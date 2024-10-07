@@ -1,0 +1,52 @@
+.main {
+  background-color: #131313;
+  height: calc(100vh - 154px);
+  overflow: auto;
+}
+
+.main::-webkit-scrollbar {
+  width: 0;
+}
+
+.main__wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0px 199px;
+}
+
+.main__image {
+  width: 501px;
+  height: 503px;
+}
+
+.main__title {
+  font-size: 30px;
+  font-weight: 500;
+  line-height: 37px;
+  max-width: 414px;
+  color: #d58c51;
+  margin-bottom: 21px;
+}
+
+.main__description {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 18px;
+  max-width: 528px;
+  color: #ffffff;
+  margin-bottom: 34px;
+}
+
+.main__tool {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  gap: 0px 137px;
+}
+
+.main__price {
+  font-size: 23px;
+  font-weight: 500;
+  color: #ffffff;
+}

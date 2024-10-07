@@ -1,0 +1,10 @@
+.button {
+  font-size: 14px;
+  font-weight: 400;
+  text-align: center;
+  padding: 12px 24px;
+  min-width: 200px;
+  cursor: pointer;
+  position: relative;
+  left: 220px;
+}

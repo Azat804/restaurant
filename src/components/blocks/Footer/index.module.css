@@ -1,0 +1,30 @@
+.footer {
+  background-color: #161516;
+  border-top: 1px solid #d58c51;
+  padding: 20px 0px 27px 0px;
+  font-family: "Montserrat";
+}
+
+.footer__wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.footer__description {
+  display: flex;
+  gap: 0px 16px;
+}
+
+.footer__order {
+  font-size: 21px;
+  color: #ffffff;
+  font-weight: 400;
+  text-transform: uppercase;
+}
+
+.footer__price {
+  font-size: 18px;
+  color: #d58c51;
+  font-weight: 400;
+}

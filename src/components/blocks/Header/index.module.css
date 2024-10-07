@@ -1,0 +1,47 @@
+.header {
+  color: #ffffff;
+  padding: 52px 0px;
+}
+
+.header__wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0px 63px;
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  gap: 0px 20px;
+}
+
+.header__title {
+  font-size: 31px;
+  font-family: "Montserrat";
+  font-weight: 700;
+  text-transform: uppercase;
+  flex-grow: 1;
+}
+
+.header__counter {
+  display: flex;
+  align-items: center;
+  gap: 0px 20px;
+}
+
+.header__price {
+  font-size: 17px;
+  font-weight: 500;
+  font-family: "Montserrat";
+  line-height: 21px;
+  text-align: right;
+}
+
+.header__img {
+  cursor: pointer;
+}
+
+.header__back {
+  cursor: pointer;
+}

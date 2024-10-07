@@ -1,0 +1,38 @@
+.card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 100%;
+}
+
+.card__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0px 88px;
+}
+
+.card__title {
+  color: #ffffff;
+  font-size: 17px;
+  font-weight: 500;
+  line-height: 21px;
+}
+
+.card__preview {
+  width: 122px;
+  height: 122px;
+}
+
+.card__price {
+  font-size: 18px;
+  font-weight: 400;
+  color: #d58c51;
+}
+
+.card__tool {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0px 15px;
+}
