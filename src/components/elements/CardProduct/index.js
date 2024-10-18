@@ -1,7 +1,7 @@
 import Styled from "./index.module.css";
 import cardAdd from "../../../assets/images/card_add.png";
 import { Link } from "react-router-dom";
-function Card({
+function CardProduct({
   img,
   title,
   description,
@@ -31,4 +31,4 @@ function Card({
   );
 }
 
-export default Card;
+export default CardProduct;
