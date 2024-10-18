@@ -7,6 +7,7 @@
   height: 552px;
   flex-direction: column;
   justify-content: space-between;
+  cursor:pointer;
 }
 
 .card__title {
@@ -18,11 +19,6 @@
 
 .card__title-link {
   color: #ffffff;
-  text-decoration: none;
-}
-
-.card__title-link:hover {
-  text-decoration: underline;
 }
 
 .card__description {

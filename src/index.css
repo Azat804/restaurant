@@ -141,3 +141,8 @@ button {
   max-width: 1308px;
   margin: 0 auto;
 }
+
+.container-second {
+  max-width: 900px;
+  margin: 0 auto;
+}

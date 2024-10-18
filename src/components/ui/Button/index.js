@@ -7,6 +7,7 @@ function Button({
   border = "1px solid #D58C51",
   position = "static",
   left = "0px",
+  onClick = ()=> {},
 }) {
   const button = {
     backgroundColor: bgColor,
@@ -14,9 +15,10 @@ function Button({
     border: border,
     position: position,
     left: left,
+   
   };
   return (
-    <button style={button} className={Styled["button"]}>
+    <button style={button} onClick={onClick} className={Styled["button"]}>
       {name}
     </button>
   );

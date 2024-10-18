@@ -7,6 +7,8 @@ import App from "./App";
 import Basket from "./Pages/Basket";
 import Products from "./Pages/Products";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import {store} from './store';
+import {Provider} from 'react-redux';
 
 const router = createBrowserRouter([
   {
@@ -18,13 +20,15 @@ const router = createBrowserRouter([
     element: <Basket />,
   },
   {
-    path: "/product",
+    path: "/:id",
     element: <Product />,
   },
 ]);
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
+    <Provider store ={store}>
     <RouterProvider router={router} />
+    </Provider>
   </React.StrictMode>
 );

@@ -10,27 +10,12 @@ import cardImage6 from "../assets/images/card_image6.png";
 import cardImage7 from "../assets/images/card_image7.png";
 import cardImage8 from "../assets/images/card_image8.png";
 import Footer from "../components/blocks/Footer";
+import { useSelector, useDispatch } from "react-redux";
+import { calcBasketProducts, productsInShoppingCard } from "../store/features/products/productsSlice";
 function Basket() {
-  const cards = [
-    {
-      img: cardImage1,
-      title: "Устрицы по рокфеллеровски",
-      price: "2 700 ₽",
-      maxWidth: "310px",
-    },
-    {
-      img: cardImage3,
-      title: "Креветки по-королевски в лимонном соке",
-      price: "1 820 ₽",
-      maxWidth: "240px",
-    },
-    {
-      img: cardImage2,
-      title: "Свиные ребрышки на гриле с зеленью",
-      price: "1 600 ₽",
-      maxWidth: "310px",
-    },
-  ];
+  const basketProducts = useSelector((state) => state.products.basketProducts);
+  const dispatch = useDispatch();
+  
   return (
     <>
       <Header
@@ -41,15 +26,23 @@ function Basket() {
         left="220px"
       />
       <main className={Styled["main"]}>
-        <div className={`container ${Styled["main__wrapper"]}`}>
-          {cards.map((item, index) => {
+        <div className={`container-second ${Styled["main__wrapper"]}`}>
+          {basketProducts.map((item, index) => {
             return (
               <div key={index}>
                 <CardBasket
-                  img={item.img}
+                id = {item.id}
+                img={item.url}
                   title={item.title}
                   price={item.price}
                   maxWidth={item.maxWidth}
+                  count={item.count}
+                  onClickCircle = {(e)=> {
+                    e.stopPropagation();
+                    dispatch(productsInShoppingCard({type: -1, id: item.id}));
+                    dispatch(calcBasketProducts())
+
+                  }}
                 />
               </div>
             );
