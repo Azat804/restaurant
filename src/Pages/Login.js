@@ -31,7 +31,7 @@ function Login() {
           : "/";
       navigate(back);
     }
-  },[token]);
+  }, [token]);
 
   const changeNameHandler = (event) => {
     dispatch(setAuthLogin(event.target.value));
@@ -43,7 +43,6 @@ function Login() {
   return (
     <>
       <Modal>
-    
         <p
           onClick={() => navigate("/register")}
           className={Styled["modal__link"]}

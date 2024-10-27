@@ -1,6 +1,5 @@
 import Styled from "./index.module.css";
 import cardAdd from "../../../assets/images/card_add.png";
-import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import numberFormat from "../../../utils/numberFormat";
 function CardProduct({

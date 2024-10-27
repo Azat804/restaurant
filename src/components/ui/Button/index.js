@@ -1,5 +1,4 @@
 import Styled from "./index.module.css";
-
 function Button({
   name = "Выйти",
   bgColor = "transparent",
@@ -7,7 +6,7 @@ function Button({
   border = "1px solid #D58C51",
   position = "static",
   left = "0px",
-  onClick = ()=> {},
+  onClick = () => {},
 }) {
   const button = {
     backgroundColor: bgColor,
@@ -15,7 +14,6 @@ function Button({
     border: border,
     position: position,
     left: left,
-   
   };
   return (
     <button style={button} onClick={onClick} className={Styled["button"]}>

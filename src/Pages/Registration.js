@@ -8,7 +8,7 @@ import {
   setRegisterPassword,
   register,
   resetRegister,
-  resetLogin
+  resetLogin,
 } from "../store/features/auth/authSlice";
 import { useEffect } from "react";
 function Registration() {
@@ -26,7 +26,7 @@ function Registration() {
 
   useEffect(() => {
     if (token) {
-      navigate('/');
+      navigate("/");
     }
     return () => {
       dispatch(resetRegister());

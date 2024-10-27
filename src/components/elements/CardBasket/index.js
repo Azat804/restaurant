@@ -1,6 +1,5 @@
 import Styled from "./index.module.css";
-import cardDelete from "../../../assets/images/card_delete.png";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import numberFormat from "../../../utils/numberFormat";
 import {
   productsInShoppingCard,

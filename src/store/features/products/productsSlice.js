@@ -179,11 +179,12 @@ export const productsSlice = createSlice({
     },
     clearBasket: (state, action) => {
       state.basketProducts = initialState.basketProducts;
-      const activeUser = window.localStorage.getItem("activeUser")
+      const activeUser = window.localStorage.getItem("activeUser");
       if (activeUser) {
         let users = JSON.parse(window.localStorage.getItem("users")) || [];
-      const activeUserIndex = users.findIndex(
-        (user) => user.loginName === window.localStorage.getItem("activeUser"));
+        const activeUserIndex = users.findIndex(
+          (user) => user.loginName === window.localStorage.getItem("activeUser")
+        );
         if (activeUserIndex !== -1) {
           users[activeUserIndex] = {
             ...users[activeUserIndex],

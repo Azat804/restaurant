@@ -3,7 +3,6 @@ import ReactDOM from "react-dom/client";
 import "./fonts.css";
 import "./index.css";
 import Product from "./Pages/Product";
-import App from "./App";
 import Basket from "./Pages/Basket";
 import Products from "./Pages/Products";
 import {
