@@ -1,11 +1,16 @@
 import Styled from "./index.module.css";
 import Button from "../../ui/Button";
 import headerImg from "../../../assets/images/header_img.png";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import headerBack from "../../../assets/images/header_back.png";
-import { useSelector} from "react-redux";
-import plural from '../../../utils/plural'
-import numberFormat from '../../../utils/numberFormat';
+import { useSelector, useDispatch } from "react-redux";
+import plural from "../../../utils/plural";
+import numberFormat from "../../../utils/numberFormat";
+import { logout } from "../../../store/features/auth/authSlice";
+import {
+  calcBasketProducts,
+  clearBasket,
+} from "../../../store/features/products/productsSlice";
 function Header({
   title,
   displayCounter = "flex",
@@ -17,6 +22,9 @@ function Header({
   const navigate = useNavigate();
   const count = useSelector((state) => state.products.counterInBasket);
   const allPrice = useSelector((state) => state.products.allPriceInBasket);
+  const dispatch = useDispatch();
+  const token = useSelector((state) => state.auth.token);
+  const location = useLocation();
 
   return (
     <header style={{ backgroundColor: bgColor }} className={Styled["header"]}>
@@ -35,7 +43,9 @@ function Header({
             style={{ display: displayCounter }}
           >
             <div className={Styled["header__price"]}>
-            {numberFormat(count)} {plural(count, {one: 'товар', few: 'товара', many: 'товаров'})}<br />
+              {numberFormat(count)}{" "}
+              {plural(count, { one: "товар", few: "товара", many: "товаров" })}
+              <br />
               на сумму {numberFormat(allPrice)} ₽
             </div>
             <img
@@ -45,7 +55,28 @@ function Header({
               onClick={() => navigate("/basket")}
             />
           </div>
-          <Button name="Выйти" position={position} left={left} />
+          {token ? (
+            <Button
+              name="Выйти"
+              position={position}
+              left={left}
+              onClick={() => {
+                dispatch(logout());
+                dispatch(clearBasket());
+                dispatch(calcBasketProducts());
+                navigate("/");
+              }}
+            />
+          ) : (
+            <Button
+              name="Войти"
+              position={position}
+              left={left}
+              onClick={() =>
+                navigate("/login", { state: { back: location.pathname } })
+              }
+            />
+          )}
         </div>
       </div>
     </header>

@@ -3,7 +3,7 @@ import Button from "../../ui/Button";
 import { useNavigate } from "react-router-dom";
 import { useSelector} from "react-redux";
 import numberFormat from '../../../utils/numberFormat';
-function Footer() {
+function Footer({onClick}) {
   const navigate = useNavigate();
   const allPrice = useSelector((state) => state.products.allPriceInBasket);
   return (
@@ -18,6 +18,7 @@ function Footer() {
           bgColor="#D58C51"
           color="#131313"
           border="none"
+          onClick={onClick}
         />
       </div>
     </footer>

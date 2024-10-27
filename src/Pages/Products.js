@@ -1,26 +1,35 @@
 import Header from "../components/blocks/Header";
 import CardProduct from "../components/elements/CardProduct";
 import Styled from "./products.module.css";
-import cardImage1 from "../assets/images/card_image1.png";
-import cardImage2 from "../assets/images/card_image2.png";
-import cardImage3 from "../assets/images/card_image3.png";
-import cardImage4 from "../assets/images/card_image4.png";
-import cardImage5 from "../assets/images/card_image5.png";
-import cardImage6 from "../assets/images/card_image6.png";
-import cardImage7 from "../assets/images/card_image7.png";
-import cardImage8 from "../assets/images/card_image8.png";
 import { useSelector, useDispatch } from "react-redux";
-import { addProductsInBasket, calcBasketProducts } from "../store/features/products/productsSlice";
+import {
+  addProductsInBasket,
+  calcBasketProducts,
+  updateUserBasket,
+  setUserBasket,
+} from "../store/features/products/productsSlice";
 import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 function Products() {
   const products = useSelector((state) => state.products.products);
+  const token = useSelector((state) => state.auth.token);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  useEffect(() => {
+    dispatch(setUserBasket());
+    dispatch(calcBasketProducts());
+  }, []);
+
   const addProduct = (e, product) => {
     e.stopPropagation();
-    dispatch(addProductsInBasket(product));
-    dispatch(calcBasketProducts());
-  }
+    if (token) {
+      dispatch(addProductsInBasket(product));
+      dispatch(calcBasketProducts());
+      dispatch(updateUserBasket());
+    } else {
+      navigate("/login");
+    }
+  };
   return (
     <>
       <Header title="наша продукция" displayBack="none" />
@@ -30,14 +39,16 @@ function Products() {
             return (
               <div key={index}>
                 <CardProduct
-                id={item.id}
-                img={item.url}
+                  id={item.id}
+                  img={item.url}
                   title={item.title}
                   description={item.description}
                   price={item.price}
                   maxWidthTitle={item.maxWidthTitle}
                   maxWidthDescription={item.maxWidthDescription}
-                  onClickCircle={(e) => addProduct(e, item)}
+                  onClickCircle={(e) => {
+                    addProduct(e, item);
+                  }}
                 />
               </div>
             );

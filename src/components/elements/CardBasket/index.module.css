@@ -24,7 +24,8 @@
   height: 122px;
 }
 
-.card__price {
+.card__price,
+.card__count {
   font-size: 18px;
   font-weight: 400;
   color: #d58c51;
@@ -37,6 +38,55 @@
   gap: 0px 15px;
 }
 
-.card__btn {
-    cursor: pointer;
+.card__add,
+.card__decrease,
+.card__remove {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 30px;
+  width: 30px;
+  border: 1px solid #d58c51;
+  border-radius: 50%;
+  box-sizing: border-box;
+  cursor: pointer;
+  position: relative;
+}
+
+.card__add::before,
+.card__decrease::before {
+  content: "";
+  width: 18px;
+  height: 1px;
+  background-color: #d58c51;
+  position: absolute;
+}
+
+.card__add::after {
+  position: absolute;
+  transform: rotate(90deg);
+  content: "";
+  width: 18px;
+  height: 1px;
+  background-color: #d58c51;
+  top: 14px;
+  left: 5px;
+}
+
+.card__remove::before {
+  content: "";
+  width: 18px;
+  height: 1px;
+  transform: rotate(45deg);
+  background-color: #d58c51;
+  position: absolute;
+}
+
+.card__remove::after {
+  content: "";
+  width: 18px;
+  height: 1px;
+  transform: rotate(-45deg);
+  background-color: #d58c51;
+  position: absolute;
 }
