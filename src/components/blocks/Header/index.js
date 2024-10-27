@@ -72,9 +72,7 @@ function Header({
               name="Войти"
               position={position}
               left={left}
-              onClick={() =>
-                navigate("/login", { state: { back: location.pathname } })
-              }
+              onClick={() => navigate("/login")}
             />
           )}
         </div>

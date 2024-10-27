@@ -1,6 +1,6 @@
 import Modal from "../components/blocks/Modal";
 import Styled from "./registration.module.css";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Button from "../components/ui/Button";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -16,7 +16,6 @@ function Registration() {
   const dispatch = useDispatch();
   const errors = useSelector((state) => state.auth.registerErrors);
   const token = useSelector((state) => state.auth.token);
-  const location = useLocation();
   const submitHandler = (event) => {
     event.preventDefault();
     setTimeout(() => {
