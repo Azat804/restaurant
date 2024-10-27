@@ -156,7 +156,7 @@ export const productsSlice = createSlice({
       }
     },
     updateUserBasket: (state, action) => {
-      let users = JSON.parse(window.localStorage.getItem("users"));
+      let users = JSON.parse(window.localStorage.getItem("users")) || [];
       const activeUserIndex = users.findIndex(
         (user) => user.loginName === window.localStorage.getItem("activeUser")
       );
@@ -169,7 +169,7 @@ export const productsSlice = createSlice({
       }
     },
     setUserBasket: (state, action) => {
-      let users = JSON.parse(window.localStorage.getItem("users"));
+      let users = JSON.parse(window.localStorage.getItem("users")) || [];
       const activeUserIndex = users.findIndex(
         (user) => user.loginName === window.localStorage.getItem("activeUser")
       );
@@ -181,7 +181,7 @@ export const productsSlice = createSlice({
       state.basketProducts = initialState.basketProducts;
       const activeUser = window.localStorage.getItem("activeUser")
       if (activeUser) {
-        let users = JSON.parse(window.localStorage.getItem("users"));
+        let users = JSON.parse(window.localStorage.getItem("users")) || [];
       const activeUserIndex = users.findIndex(
         (user) => user.loginName === window.localStorage.getItem("activeUser"));
         if (activeUserIndex !== -1) {

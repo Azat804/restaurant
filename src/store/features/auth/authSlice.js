@@ -27,21 +27,22 @@ export const authSlice = createSlice({
   initialState,
   reducers: {
     login: (state, action) => {
-      const users = JSON.parse(window.localStorage.getItem("users")) || [];
-      const { loginName, password } = JSON.parse(
-        JSON.stringify(state.authData)
-      );
-      const existUser = users.find(
-        (user) => user.loginName === loginName && user.password === password
-      );
-      if (existUser && loginName && password) {
-        window.localStorage.setItem("token", JSON.stringify(true));
-        state.token = true;
-        window.localStorage.setItem("activeUser", loginName);
-        state.authData = initialState.authData;
-        state.authErrors = initialState.authErrors;
-      } else {
-        state.authErrors.other = "Логин или пароль неверен";
+      const { loginName, password } = state.authData;
+      console.log(loginName, password);
+      if (loginName && password) {
+        const users = JSON.parse(window.localStorage.getItem("users")) || [];
+        const existUser = users.find(
+          (user) => user.loginName === loginName && user.password === password
+        );
+        if (existUser) {
+          window.localStorage.setItem("token", JSON.stringify(true));
+          state.token = true;
+          window.localStorage.setItem("activeUser", loginName);
+          state.authData = initialState.authData;
+          state.authErrors = initialState.authErrors;
+        } else {
+          state.authErrors.other = "Логин или пароль неверен";
+        }
       }
     },
     logout: (state, action) => {
@@ -50,11 +51,10 @@ export const authSlice = createSlice({
       window.localStorage.removeItem("activeUser");
     },
     register: (state, action) => {
-      const users = JSON.parse(window.localStorage.getItem("users")) || [];
-      const { loginName, password } = JSON.parse(
-        JSON.stringify(state.registerData)
-      );
-      if (loginName && password) {
+      const { loginName, password } = state.registerData;
+
+      if (loginName.length >= 4 && password.length >= 4) {
+        const users = JSON.parse(window.localStorage.getItem("users")) || [];
         const existUser = users.find((user) => user.loginName === loginName);
         if (!existUser) {
           window.localStorage.setItem("activeUser", loginName);
@@ -79,8 +79,8 @@ export const authSlice = createSlice({
     },
     setAuthLogin(state, action) {
       state.authErrors.other = "";
+      state.authData.loginName = action.payload;
       if (action.payload.length > 0) {
-        state.authData.loginName = action.payload;
         state.authErrors.loginName = "";
       } else {
         state.authErrors.loginName = "Поле не должно быть пустым";
@@ -88,8 +88,8 @@ export const authSlice = createSlice({
     },
     setAuthPassword(state, action) {
       state.authErrors.other = "";
+      state.authData.password = action.payload;
       if (action.payload.length > 0) {
-        state.authData.password = action.payload;
         state.authErrors.password = "";
       } else {
         state.authErrors.password = "Поле не должно быть пустым";
@@ -97,8 +97,8 @@ export const authSlice = createSlice({
     },
     setRegisterLogin(state, action) {
       state.registerErrors.other = "";
+      state.registerData.loginName = action.payload;
       if (action.payload.length >= 4) {
-        state.registerData.loginName = action.payload;
         state.registerErrors.loginName = "";
       } else if (action.payload.length > 0 && action.payload.length < 4) {
         state.registerErrors.loginName =
@@ -109,8 +109,8 @@ export const authSlice = createSlice({
     },
     setRegisterPassword(state, action) {
       state.registerErrors.other = "";
+      state.registerData.password = action.payload;
       if (action.payload.length >= 4) {
-        state.registerData.password = action.payload;
         state.registerErrors.password = "";
       } else if (action.payload.length > 0 && action.payload.length < 4) {
         state.registerErrors.password =
