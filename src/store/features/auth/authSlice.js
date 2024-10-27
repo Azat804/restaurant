@@ -28,7 +28,6 @@ export const authSlice = createSlice({
   reducers: {
     login: (state, action) => {
       const { loginName, password } = state.authData;
-      console.log(loginName, password);
       if (loginName && password) {
         const users = JSON.parse(window.localStorage.getItem("users")) || [];
         const existUser = users.find(
