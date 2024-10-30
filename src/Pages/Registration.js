@@ -15,7 +15,7 @@ function Registration() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const errors = useSelector((state) => state.auth.registerErrors);
-  const token = useSelector((state) => state.auth.token);
+  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
   const submitHandler = (event) => {
     event.preventDefault();
     setTimeout(() => {
@@ -24,14 +24,14 @@ function Registration() {
   };
 
   useEffect(() => {
-    if (token) {
+    if (isAuthenticated) {
       navigate("/");
     }
     return () => {
       dispatch(resetRegister());
       dispatch(resetLogin());
     };
-  }, [token]);
+  }, [isAuthenticated]);
 
   const changeNameHandler = (event) => {
     dispatch(setRegisterLogin(event.target.value));

@@ -1,7 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  token: JSON.parse(window.localStorage.getItem("token")) ?? false,
+  isAuthenticated:
+    JSON.parse(window.localStorage.getItem("isAuthenticated")) ?? false,
   authData: {
     loginName: "",
     password: "",
@@ -34,8 +35,8 @@ export const authSlice = createSlice({
           (user) => user.loginName === loginName && user.password === password
         );
         if (existUser) {
-          window.localStorage.setItem("token", JSON.stringify(true));
-          state.token = true;
+          window.localStorage.setItem("isAuthenticated", JSON.stringify(true));
+          state.isAuthenticated = true;
           window.localStorage.setItem("activeUser", loginName);
           state.authData = initialState.authData;
           state.authErrors = initialState.authErrors;
@@ -45,8 +46,8 @@ export const authSlice = createSlice({
       }
     },
     logout: (state, action) => {
-      window.localStorage.removeItem("token");
-      state.token = false;
+      window.localStorage.removeItem("isAuthenticated");
+      state.isAuthenticated = false;
       window.localStorage.removeItem("activeUser");
     },
     register: (state, action) => {
@@ -57,8 +58,8 @@ export const authSlice = createSlice({
         const existUser = users.find((user) => user.loginName === loginName);
         if (!existUser) {
           window.localStorage.setItem("activeUser", loginName);
-          window.localStorage.setItem("token", JSON.stringify(true));
-          state.token = true;
+          window.localStorage.setItem("isAuthenticated", JSON.stringify(true));
+          state.isAuthenticated = true;
           window.localStorage.setItem(
             "users",
             JSON.stringify([

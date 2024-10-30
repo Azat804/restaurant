@@ -8,27 +8,19 @@ import {
   updateUserBasket,
   setUserBasket,
 } from "../store/features/products/productsSlice";
-import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 function Products() {
   const products = useSelector((state) => state.products.products);
-  const token = useSelector((state) => state.auth.token);
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   useEffect(() => {
     dispatch(setUserBasket());
     dispatch(calcBasketProducts());
   }, []);
-
   const addProduct = (e, product) => {
     e.stopPropagation();
-    if (token) {
-      dispatch(addProductsInBasket(product));
-      dispatch(calcBasketProducts());
-      dispatch(updateUserBasket());
-    } else {
-      navigate("/login");
-    }
+    dispatch(addProductsInBasket(product));
+    dispatch(calcBasketProducts());
+    dispatch(updateUserBasket());
   };
   return (
     <>

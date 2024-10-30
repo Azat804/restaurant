@@ -17,8 +17,8 @@ import Login from "./Pages/Login";
 import { useSelector } from "react-redux";
 
 const CheckAuth = ({ children }) => {
-  const token = useSelector((state) => state.auth.token);
-  if (token) {
+  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+  if (isAuthenticated) {
     return children;
   }
 
@@ -27,7 +27,11 @@ const CheckAuth = ({ children }) => {
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Products />,
+    element: (
+      <CheckAuth>
+        <Products />
+      </CheckAuth>
+    ),
   },
   {
     path: "/basket",
@@ -39,7 +43,11 @@ const router = createBrowserRouter([
   },
   {
     path: "/:id",
-    element: <Product />,
+    element: (
+      <CheckAuth>
+        <Product />
+      </CheckAuth>
+    ),
   },
   {
     path: "/register",

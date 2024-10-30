@@ -1,7 +1,7 @@
 import Styled from "./index.module.css";
 import Button from "../../ui/Button";
 import headerImg from "../../../assets/images/header_img.png";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import headerBack from "../../../assets/images/header_back.png";
 import { useSelector, useDispatch } from "react-redux";
 import plural from "../../../utils/plural";
@@ -15,16 +15,13 @@ function Header({
   title,
   displayCounter = "flex",
   displayBack = "none",
-  position = "static",
   bgColor = "#161516",
-  left = "0px",
 }) {
   const navigate = useNavigate();
   const count = useSelector((state) => state.products.counterInBasket);
   const allPrice = useSelector((state) => state.products.allPriceInBasket);
   const dispatch = useDispatch();
-  const token = useSelector((state) => state.auth.token);
-  const location = useLocation();
+  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
 
   return (
     <header style={{ backgroundColor: bgColor }} className={Styled["header"]}>
@@ -55,11 +52,9 @@ function Header({
               onClick={() => navigate("/basket")}
             />
           </div>
-          {token ? (
+          {isAuthenticated ? (
             <Button
               name="Выйти"
-              position={position}
-              left={left}
               onClick={() => {
                 dispatch(logout());
                 dispatch(clearBasket());
@@ -68,12 +63,7 @@ function Header({
               }}
             />
           ) : (
-            <Button
-              name="Войти"
-              position={position}
-              left={left}
-              onClick={() => navigate("/login")}
-            />
+            <Button name="Войти" onClick={() => navigate("/login")} />
           )}
         </div>
       </div>

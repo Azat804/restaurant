@@ -1,6 +1,6 @@
 import Modal from "../components/blocks/Modal";
 import Button from "../components/ui/Button";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Styled from "./login.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -13,8 +13,7 @@ function Login() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const errors = useSelector((state) => state.auth.authErrors);
-  const token = useSelector((state) => state.auth.token);
-  const location = useLocation();
+  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
 
   const submitHandler = (event) => {
     event.preventDefault();
@@ -24,10 +23,10 @@ function Login() {
   };
 
   useEffect(() => {
-    if (token) {
+    if (isAuthenticated) {
       navigate("/");
     }
-  }, [token]);
+  }, [isAuthenticated]);
 
   const changeNameHandler = (event) => {
     dispatch(setAuthLogin(event.target.value));
